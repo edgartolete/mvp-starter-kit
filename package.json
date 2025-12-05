@@ -16,7 +16,10 @@
     "@mui/icons-material": "^7.3.6",
     "@mui/material": "^7.3.6",
     "@mui/material-nextjs": "^7.3.6",
+    "@neondatabase/serverless": "^1.0.2",
     "@tanstack/react-query": "^5.90.12",
+    "dotenv": "^17.2.3",
+    "drizzle-orm": "^0.45.0",
     "jotai": "^2.15.2",
     "jotai-immer": "^0.4.1",
     "next": "16.0.7",
@@ -30,10 +33,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9",
     "eslint-config-next": "16.0.7",
     "jotai-devtools": "^0.13.0",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   },
   "packageManager": "pnpm@9.1.1+sha1.09ada6cd05003e0ced25fb716f9fda4063ec2e3b"
