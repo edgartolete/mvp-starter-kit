@@ -74,7 +74,7 @@ export default function SignupPage() {
         }
       />
       <div className="mt-4 flex justify-between">
-        <Link href="/register">
+        <Link href="/login">
           <Button>Login</Button>
         </Link>
         <Button variant="contained" onClick={handleSignup}>
