@@ -1,8 +1,61 @@
+"use client";
+
+export const dynamic = "force-static";
+
+import { authClient } from "@/utils/auth-client";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Link from "next/link";
+import { useState } from "react";
+
+type LoginCredT = {
+  username: string;
+  password: string;
+};
+
 export default function LoginPage() {
+  const [loginCred, setLoginCred] = useState<LoginCredT>({
+    username: "",
+    password: "",
+  });
+
+  const handleLogin = async () => {
+    await authClient.signIn.username({
+      ...loginCred,
+      callbackURL: "/",
+    });
+  };
+
   return (
-    <>
+    <form>
       <h1 className="text-3xl font-bold"> Login</h1>
-      Login Page
-    </>
+      <TextField
+        id="standard-basic"
+        label="Username"
+        variant="standard"
+        fullWidth
+        onChange={(e) =>
+          setLoginCred({ ...loginCred, username: e.target.value })
+        }
+      />
+      <TextField
+        type="password"
+        id="standard-basic"
+        label="Password"
+        variant="standard"
+        onChange={(e) =>
+          setLoginCred({ ...loginCred, password: e.target.value })
+        }
+        fullWidth
+      />
+      <div className="mt-4 flex justify-between">
+        <Link href="/register">
+          <Button>Register</Button>
+        </Link>
+        <Button variant="contained" onClick={handleLogin}>
+          Login
+        </Button>
+      </div>
+    </form>
   );
 }

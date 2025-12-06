@@ -8,6 +8,13 @@
       "when": 1765009632571,
       "tag": "0000_previous_lyja",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1765010499081,
+      "tag": "0001_misty_hammerhead",
+      "breakpoints": true
     }
   ]
 }
