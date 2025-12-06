@@ -6,6 +6,7 @@ import { authClient } from "@/utils/auth-client";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type LoginCredT = {
@@ -14,16 +15,18 @@ type LoginCredT = {
 };
 
 export default function LoginPage() {
+  const router = useRouter();
   const [loginCred, setLoginCred] = useState<LoginCredT>({
     username: "",
     password: "",
   });
 
   const handleLogin = async () => {
-    await authClient.signIn.username({
-      ...loginCred,
-      callbackURL: "/",
-    });
+    const { data } = await authClient.signIn.username(loginCred);
+
+    if (data?.user) {
+      router.push("/dashboard");
+    }
   };
 
   return (

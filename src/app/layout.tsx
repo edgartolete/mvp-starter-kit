@@ -24,15 +24,15 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          <MainProviders>
+        <MainProviders>
+          <AppRouterCacheProvider options={{ enableCssLayer: true }}>
             <JotaiDevTools shouldDisplay={isDevelopment}>
               <ReactQueryProvider shouldDisplay={isDevelopment}>
                 {children}
               </ReactQueryProvider>
             </JotaiDevTools>
-          </MainProviders>
-        </AppRouterCacheProvider>
+          </AppRouterCacheProvider>
+        </MainProviders>
       </body>
     </html>
   );

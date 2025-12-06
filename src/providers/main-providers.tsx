@@ -7,7 +7,7 @@ export default function MainProviders({
   children: React.ReactNode;
 }>) {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div></div>}>
       <NuqsAdapter>{children}</NuqsAdapter>
     </Suspense>
   );

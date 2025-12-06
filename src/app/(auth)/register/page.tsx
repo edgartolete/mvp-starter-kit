@@ -27,13 +27,10 @@ export default function SignupPage() {
   });
 
   const handleSignup = async () => {
-    const { error } = await authClient.signUp.email({
-      ...signupCred,
-      callbackURL: "/",
-    });
+    const { data } = await authClient.signUp.email(signupCred);
 
-    if (!error?.message) {
-      router.push("/");
+    if (data?.user) {
+      router.push("/dashboard");
     }
   };
 
