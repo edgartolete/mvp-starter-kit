@@ -14,6 +14,7 @@ type SignupCredT = {
   name: string;
   username: string;
   password: string;
+  repeatPassword?: string;
 };
 
 export default function SignupPage() {
@@ -27,6 +28,9 @@ export default function SignupPage() {
   });
 
   const handleSignup = async () => {
+    if (signupCred.password !== signupCred.repeatPassword) {
+      return;
+    }
     const { data } = await authClient.signUp.email(signupCred);
 
     if (data?.user) {
@@ -71,6 +75,16 @@ export default function SignupPage() {
         fullWidth
         onChange={(e) =>
           setSignupCred({ ...signupCred, password: e.target.value })
+        }
+      />
+      <TextField
+        type="password"
+        id="standard-basic"
+        label="Repeat Password"
+        variant="standard"
+        fullWidth
+        onChange={(e) =>
+          setSignupCred({ ...signupCred, repeatPassword: e.target.value })
         }
       />
       <div className="mt-4 flex justify-between">
