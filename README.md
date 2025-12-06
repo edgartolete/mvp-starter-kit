@@ -77,9 +77,9 @@ If the idea is not viable, you only lost 1-2 weeks of your time. You can then mo
 # Environment Variables
 
 ```
-DATABASE_URL=
-BETTER_AUTH_URL=
-BETTER_AUTH_SECRET=
+DATABASE_URL= <this is the neon postgreSQL connection string>
+BETTER_AUTH_URL= <this is the domain url of the backend. same url as frontend as we will use the /api directory>
+BETTER_AUTH_SECRET= <you can generate this secret from the BetterAuth documentation>
 ```
 
 # Development
@@ -93,3 +93,8 @@ pnpm dev
 # Deploy
 
 You can integrate your account with either Vercel, or Cloudflare workers.
+
+```
+pnpm build \
+pnpm start
+```
