@@ -1,3 +1,8 @@
-export default function LoginPage(){
-  return <div>Login Page</div>
+export default function LoginPage() {
+  return (
+    <>
+      <h1 className="text-3xl font-bold"> Login</h1>
+      Login Page
+    </>
+  );
 }
