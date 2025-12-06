@@ -4,6 +4,7 @@ export const dynamic = "force-static";
 
 import { authClient } from "@/utils/auth-client";
 import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
 import TextField from "@mui/material/TextField";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -19,6 +20,7 @@ type SignupCredT = {
 
 export default function SignupPage() {
   const router = useRouter();
+  const [snackbar, setSnackbar] = useState({ open: false, message: "" });
 
   const [signupCred, setSignupCred] = useState<SignupCredT>({
     email: "",
@@ -29,14 +31,20 @@ export default function SignupPage() {
 
   const handleSignup = async () => {
     if (signupCred.password !== signupCred.repeatPassword) {
+      setSnackbar({ open: true, message: "Password Mismatch" });
       return;
     }
-    const { data } = await authClient.signUp.email(signupCred);
+    const { error } = await authClient.signUp.email(signupCred);
 
-    if (data?.user) {
-      router.push("/dashboard");
+    if (error?.message) {
+      setSnackbar({ open: true, message: error.message });
+      return;
     }
+
+    router.push("/dashboard");
   };
+
+  const handleClose = () => setSnackbar({ open: false, message: "" });
 
   return (
     <form>
@@ -95,6 +103,17 @@ export default function SignupPage() {
           Register
         </Button>
       </div>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={snackbar.message}
+        action={
+          <div onClick={handleClose} className="cursor-pointer">
+            Close
+          </div>
+        }
+      />
     </form>
   );
 }
