@@ -1,10 +1,7 @@
-"use client"
+"use client";
 
-export const dynamic = "force-static"
+export const dynamic = "force-static";
 
 export default function Home() {
-  
-  return <div>
-
-  </div>;
+  return <div></div>;
 }
