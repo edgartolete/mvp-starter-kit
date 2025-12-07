@@ -1,19 +1,22 @@
-import { auth } from "@/utils/auth";
-import { headers } from "next/headers";
+"use client";
+
+export const dynamic = "force-static";
+
+// import { auth } from "@/utils/auth";
+import { authClient } from "@/utils/auth-client";
+// import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { useEffect } from "react";
 
-export default async function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session) {
-    redirect("/login");
-  }
+export default function Layout({ children }: { children: React.ReactNode }) {
+  useEffect(() => {
+    authClient.getSession().then((res) => {
+      console.log("#", { res });
+      if (!res.data || res.error) {
+        redirect("/login");
+      }
+    });
+  }, []);
 
   return <>{children}</>;
 }
