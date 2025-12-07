@@ -1,10 +1,7 @@
 "use client";
 
 export const dynamic = "force-static";
-
-// import { auth } from "@/utils/auth";
 import { authClient } from "@/utils/auth-client";
-// import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
