@@ -2,6 +2,7 @@
 
 export const dynamic = "force-static";
 
+import { queryClient } from "@/providers/rq-provider";
 import { authClient } from "@/utils/auth-client";
 import Button from "@mui/material/Button";
 import Link from "next/link";
@@ -12,6 +13,7 @@ export default function DashboardPage() {
 
   const handleLogout = async () => {
     const res = await authClient.signOut();
+    queryClient.clear();
 
     if (res.data?.success) {
       router.push("/login");
@@ -19,8 +21,8 @@ export default function DashboardPage() {
   };
   return (
     <div>
-      Dashboard page
-      <Link href="/test">Test</Link>
+      Test Page:
+      <Link href="/dashboard">Dashboard</Link>
       <Button onClick={handleLogout}>Logout</Button>
     </div>
   );

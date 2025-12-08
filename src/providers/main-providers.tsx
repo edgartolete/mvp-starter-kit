@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import Loading from "@/app/loading";
 
 export default function MainProviders({
   children,
@@ -7,7 +8,7 @@ export default function MainProviders({
   children: React.ReactNode;
 }>) {
   return (
-    <Suspense fallback={<div></div>}>
+    <Suspense fallback={<Loading/>}>
       <NuqsAdapter>{children}</NuqsAdapter>
     </Suspense>
   );
